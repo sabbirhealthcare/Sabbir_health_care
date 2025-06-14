@@ -1,1 +1,1 @@
-console.log('ছাব্বির হেলথ কেয়ার loaded');
+console.log('AI Medical System Ready');
