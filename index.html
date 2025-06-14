@@ -1,1 +1,83 @@
-<!DOCTYPE html><html><head><title>ছাব্বির হেলথ কেয়ার</title></head><body><h1>স্বাগতম ছাব্বির হেলথ কেয়ার</h1></body></html>
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ছাব্বির হেলথ কেয়ার</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .container {
+            margin: 30px auto;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            font-size: 16px;
+        }
+        #ai-section {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>ছাব্বির হেলথ কেয়ার</header>
+    <div class="container">
+        <h2>AI মেডিকেল সহায়তা</h2>
+        <p>সেবা নিতে হলে প্রথমে ২০ টাকা পাঠান (bKash/Nagad): <strong>01942326459</strong></p>
+        <input type="text" id="trxid" placeholder="আপনার ট্রানজেকশন ID লিখুন">
+        <button onclick="verifyPayment()">চালু করুন</button>
+        
+        <div id="ai-section">
+            <h3>আপনার প্রশ্ন লিখুন</h3>
+            <input type="text" id="userInput" placeholder="যেমনঃ আমার জ্বর ৩ দিন ধরে">
+            <button onclick="getAIResponse()">উত্তর দেখুন</button>
+            <p id="aiResponse" style="margin-top:20px;"></p>
+        </div>
+    </div>
+    <script>
+        function verifyPayment() {
+            const trxid = document.getElementById('trxid').value;
+            if (trxid.length >= 8) {
+                document.getElementById('ai-section').style.display = 'block';
+            } else {
+                alert('সঠিক ট্রানজেকশন ID দিন');
+            }
+        }
+
+        function getAIResponse() {
+            const input = document.getElementById('userInput').value.toLowerCase();
+            let response = "দুঃখিত, আমি বুঝতে পারিনি। অনুগ্রহ করে সঠিকভাবে লিখুন।";
+
+            if (input.includes("জ্বর")) {
+                response = "আপনার জ্বর ৩ দিনের বেশি হলে একজন চিকিৎসকের পরামর্শ নিন এবং পানিশূন্যতা এড়িয়ে চলুন।";
+            } else if (input.includes("কাশি")) {
+                response = "কাশি যদি দীর্ঘস্থায়ী হয়, তবে বুকে এক্স-রে করার পরামর্শ দেয়া হচ্ছে।";
+            } else if (input.includes("ডায়াবেটিস")) {
+                response = "নিয়মিত রক্তে গ্লুকোজ পরীক্ষা করুন এবং কম শর্করাযুক্ত খাবার গ্রহণ করুন।";
+            }
+
+            document.getElementById('aiResponse').innerText = response;
+        }
+    </script>
+</body>
+</html>
